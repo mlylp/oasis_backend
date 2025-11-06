@@ -20,13 +20,11 @@ CORS(server)
 def response():
     return 'Hello, and welcome to my page.'
 
-@server.route('/habits')
+@server.route('/habits', methods=['GET', 'OPTIONS'])
 def data():
     with open("data/habits.json", "r", encoding="utf-8") as file:
         habits = json.load(file)
     return jsonify(habits)
-    
-
 
 if __name__ == "__main__":
     server.run()
