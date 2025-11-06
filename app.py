@@ -1,7 +1,7 @@
 # Aqui importamos os módulos da nossa aplicação
 import json
 from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 """
 Se quiser importar um arquivo, basta seguir o padrão:
@@ -21,6 +21,7 @@ def response():
     return 'Hello, and welcome to my page.'
 
 @server.route('/habits', methods=['GET', 'OPTIONS'])
+@cross_origin()
 def data():
     with open("data/habits.json", "r", encoding="utf-8") as file:
         habits = json.load(file)
