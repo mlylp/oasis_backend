@@ -16,6 +16,13 @@ from pasta.nome_arquivo import funcao(ou '*' para importar todas de uma vez)
 server = Flask(__name__)
 CORS(server)
 
+@server.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS')
+    return response
+
 @server.route('/')
 def response():
     return 'Hello, and welcome to my page.'
