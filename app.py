@@ -27,10 +27,17 @@ def after_request(response):
 def response():
     return 'Hello, and welcome to my page.'
 
+@server.route('/habits', methods=['GET', 'OPTIONS'])
+def habits_data():
+    with open("data/habits.json", "r", encoding="utf-8") as file:
+        habits = json.load(file)
+    return jsonify(habits)
+
 @server.route('/users', methods=['GET', 'OPTIONS'])
 def user_data():
     with open("data/users.json", "r", encoding="utf-8") as file:
         users = json.load(file)
+  
     return jsonify(users)
 
 if __name__ == "__main__":
